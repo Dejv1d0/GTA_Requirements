@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTA Requirements</title>
+  <meta name="description"
+    content="Check your PC against predicted GTA 6 system requirements. Unofficial fan tool — updated the moment Rockstar publishes real specs." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="brevo.css" />
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-inner wrap" style="padding-left: 0; padding-right: 0">
+      <div class="logo">GTA<span>REQUIREMENTS</span></div>
+      <nav>
+        <a href="#scan">Scan</a>
+        <a href="#specs">Specs</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#signup" class="btn nav-cta">Get Notified</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-wrapper">
+      <div class="wrap hero-inner">
+        <div class="eyebrow">
+          UNOFFICIAL FAN TOOL · NO OFFICIAL PC SPECS YET
+        </div>
+        <h1 class="hero-title">Will your rig<br />run <em>Vice City?</em></h1>
+        <p class="hero-sub" id="scan">
+          Rockstar hasn't announced GTA 6 for PC yet. We're tracking every
+          signal — RAGE engine history, GTA V &amp; RDR2 ports, hardware
+          trends — to predict what you'll need, and we'll flip these numbers
+          to real ones the second Rockstar does.
+        </p>
+        <div class="hero-actions">
+          <a href="#scan" class="btn">Run the scan</a>
+          <a href="#specs" class="btn ghost">See predicted specs</a>
+        </div>
+      </div>
+
+      <div class="skyline" aria-hidden="true">
+        <svg viewBox="0 0 1200 160" preserveAspectRatio="none">
+          <polygon
+            points="0,160 0,90 30,90 30,60 55,60 55,100 90,100 90,40 120,40 120,110 160,110 160,70 190,70 190,120 230,120 230,50 260,50 260,95 300,95 300,30 335,30 335,105 380,105 380,65 410,65 410,130 455,130 455,45 490,45 490,100 530,100 530,20 560,20 560,90 600,90 600,55 635,55 635,120 680,120 680,75 710,75 710,15 745,15 745,110 790,110 790,60 825,60 825,130 865,130 865,40 900,40 900,95 940,95 940,25 975,25 975,105 1015,105 1015,70 1050,70 1050,120 1090,120 1090,50 1125,50 1125,100 1160,100 1160,80 1200,80 1200,160"
+            fill="#0F2530" opacity="0.9" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="console-section">
+    <div class="console">
+      <div class="console-topbar">
+        <span class="mono">/// system_scan.exe</span>
+        <div class="console-lights">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="console-body">
+        <div class="field">
+          <label for="cpu">Your CPU</label>
+          <select id="cpu">
+            <option value="0">Older / entry (i5-4xxx, Ryzen 1st gen)</option>
+            <option value="1">Mid (i5-8xxx–10xxx, Ryzen 5 2600–3600)</option>
+            <option value="2" selected>
+              Strong (i5-12xxx+, Ryzen 5 5600+)
+            </option>
+            <option value="3">
+              High-end (i7/i9 13th gen+, Ryzen 7 7800X3D+)
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gpu">Your GPU</label>
+          <select id="gpu">
+            <option value="0">GTX 1050–1650 / RX 570</option>
+            <option value="1">GTX 1660–RTX 2060 / RX 5600</option>
+            <option value="2" selected>RTX 3060–3070 / RX 6700</option>
+            <option value="3">RTX 4070+ / RX 7800 XT+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ram">System RAM</label>
+          <select id="ram">
+            <option value="0">8 GB</option>
+            <option value="1" selected>16 GB</option>
+            <option value="2">32 GB</option>
+            <option value="3">64 GB</option>
+          </select>
+        </div>
+        <div class="field">
+          <button id="scanBtn" class="btn">Run scan</button>
+        </div>
+      </div>
+
+      <div class="console-body" style="padding-top: 0">
+        <div class="readout" id="readout" style="grid-column: 1/-1">
+          <div class="readout-line">
+            <span class="k">CPU_CHECK ...</span>
+            <span class="v" id="rCpu"></span>
+          </div>
+          <div class="readout-line">
+            <span class="k">GPU_CHECK ...</span>
+            <span class="v" id="rGpu"></span>
+          </div>
+          <div class="readout-line">
+            <span class="k">RAM_CHECK ...</span>
+            <span class="v" id="rRam"></span>
+          </div>
+          <div class="verdict" id="verdict">
+            <div class="verdict-icon" id="verdictIcon">—</div>
+            <div>
+              <h3 id="verdictTitle">—</h3>
+              <p id="verdictBody">—</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer-strip">
+        <b>Heads up:</b> Rockstar has not published official GTA 6 PC
+        requirements — there's no confirmed PC release yet. This scan checks
+        your rig against our predicted specs, based on the RAGE engine's
+        history and comparable console-to-PC ports. We'll swap in real numbers
+        the moment they're official.
+      </div>
+    </div>
+  </div>
+
+  <div class="countdown-strip">
+    <div class="wrap countdown-inner">
+      <div class="countdown-label">
+        Console launch (PS5 / Xbox Series X|S): <b>November 19, 2026</b>
+      </div>
+      <div class="clock" id="clock">
+        <div>
+          <div class="num" id="cd-d">00</div>
+          <div class="unit">Days</div>
+        </div>
+        <div>
+          <div class="num" id="cd-h">00</div>
+          <div class="unit">Hrs</div>
+        </div>
+        <div>
+          <div class="num" id="cd-m">00</div>
+          <div class="unit">Min</div>
+        </div>
+        <div>
+          <div class="num" id="cd-s">00</div>
+          <div class="unit">Sec</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="specs">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Predicted, not official</div>
+        <h2>What we expect Rockstar to ask for</h2>
+        <p>
+          No PC version has been confirmed. Based on GTA V and Red Dead
+          Redemption 2's console-to-PC gaps (12–18 months) and the visible
+          fidelity in Trailer 2, here's our working estimate — updated as new
+          signals come in.
+        </p>
+      </div>
+
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>CPU</th>
+            <th>GPU</th>
+            <th>RAM</th>
+            <th>Storage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier">Minimum</td>
+            <td>Ryzen 5 3600 / i5-10400</td>
+            <td>GTX 1660 / RX 590</td>
+            <td>12 GB</td>
+            <td>150 GB NVMe SSD</td>
+          </tr>
+          <tr>
+            <td class="tier">Recommended <span class="tag">1080p60</span></td>
+            <td>Ryzen 5 5600X / i7-10700K</td>
+            <td>RTX 3070 / RX 6700 XT</td>
+            <td>16 GB</td>
+            <td>150 GB NVMe SSD</td>
+          </tr>
+          <tr>
+            <td class="tier">High <span class="tag">1440p ultra</span></td>
+            <td>Ryzen 7 7800X3D</td>
+            <td>RTX 4070 Ti / RX 7900 XT</td>
+            <td>32 GB</td>
+            <td>200 GB NVMe SSD (Gen4)</td>
+          </tr>
+          <tr>
+            <td class="tier">4K / Ray tracing</td>
+            <td>Ryzen 9 9800X3D</td>
+            <td>RTX 5080 / RTX 5090</td>
+            <td>32 GB</td>
+            <td>200 GB NVMe SSD (Gen4)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="table-note">
+        Community-sourced prediction, not a Rockstar or Take-Two document.
+        We'll replace this table within hours of an official announcement —
+        that's the whole point of this site.
+      </p>
+    </div>
+  </section>
+
+  <!--
+    <section>
+      <div class="wrap">
+        <div class="ad-slot">Ad slot — 728×90 leaderboard</div>
+      </div>
+    </section>
+    -->
+
+  <section id="signup">
+    <div class="wrap">
+      <div class="signup">
+        <div>
+          <h2>Be first to know<br />when real specs drop</h2>
+          <p>
+            One email, sent the moment Rockstar publishes official GTA 6 PC
+            requirements — nothing before that.
+          </p>
+        </div>
+        <div>
+          <div class="sib-form" style="text-align: center; background-color: transparent">
+            <div id="sib-form-container" class="sib-form-container">
+              <div id="error-message" class="sib-form-message-panel">
+                <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                  <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+                    <path
+                      d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
+                  </svg>
+                  <span class="sib-form-message-panel__inner-text">
+                    Internal error. Please try again.
+                  </span>
+                </div>
+              </div>
+              <div></div>
+              <div id="success-message" class="sib-form-message-panel">
+                <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+                  <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+                    <path
+                      d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" />
+                  </svg>
+                  <span class="sib-form-message-panel__inner-text">
+                    You will be first to know when real specs drop!
+                  </span>
+                </div>
+              </div>
+              <div></div>
+              <div id="sib-container" class="sib-container--large sib-container--horizontal">
+                <form id="sib-form" method="POST"
+                  action="https://31128b80.sibforms.com/serve/MUIFAIFyp-3Zn2w3bX97ACruGgd1kBO-eSPFr-p1GNkT9QnCIDz9kzayhxNdm2iQswurpb6OX-EpAnLpm7l6E7R2ViofrsQnQWIHF6qUx318JbvDAurGKewzFo0r3Babmzuu6Rl23YO4B7j6FJX18Mc8EEAvbbHi-x44CJ5heXX3GrKoOOLSHxYF9EFs9bnVJY8CR5RbP5hz0V-Wdg=="
+                  data-type="subscription">
+                  <div>
+                    <div class="sib-input sib-form-block">
+                      <div class="form__entry entry_block">
+                        <div class="form__label-row form__label-row--horizontal">
+                          <div class="entry__field">
+                            <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value=""
+                              placeholder="your@email.com" data-required="true" required />
+                          </div>
+                        </div>
+
+                        <label class="entry__error entry__error--primary">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="sib-captcha sib-form-block">
+                      <div class="form__entry entry_block">
+                        <div class="form__label-row form__label-row--horizontal">
+                          <script>
+                            function handleCaptchaResponse() {
+                              var event = new Event("captchaChange");
+                              document
+                                .getElementById("sib-captcha")
+                                .dispatchEvent(event);
+
+                              window.grecaptcha = window.turnstile;
+                            }
+                          </script>
+
+                          <div class="cf-turnstile g-recaptcha" data-sitekey="0x4AAAAAAEMjnZnuO7rDAdK5" id="sib-captcha"
+                            data-callback="handleCaptchaResponse" data-language="en" data-theme="dark"></div>
+                        </div>
+                        <label class="entry__error entry__error--primary">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="sib-form-block" style="text-align: left">
+                      <button class="sib-form-block__button sib-form-block__button-with-loader" class="btn"
+                        form="sib-form" type="submit">
+                        <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
+                          viewBox="0 0 512 512">
+                          <path
+                            d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                        </svg>
+                        NOTIFY ME
+                      </button>
+                      <p class="fine">No spam. Unsubscribe anytime.</p>
+                    </div>
+                  </div>
+
+                  <input type="text" name="email_address_check" value="" class="input--hidden" />
+
+                  <input type="hidden" name="locale" value="en" />
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- END - We recommend to place the above code where you want the form in your website html  -->
+
+          <!-- START - We recommend to place the below code in footer or bottom of your website html  -->
+          <script>
+            window.REQUIRED_CODE_ERROR_MESSAGE =
+              "Please choose a country code";
+            window.LOCALE = "en";
+
+            window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+              "The information provided is invalid. Please review the field format and try again.";
+
+            window.REQUIRED_ERROR_MESSAGE =
+              "This field cannot be left blank. ";
+
+            window.GENERIC_INVALID_MESSAGE =
+              "The information provided is invalid. Please review the field format and try again.";
+
+            window.INVALID_NUMBER =
+              "The information provided is invalid. Please review the field format and try again.";
+
+            window.INVALID_DATE = "Please enter a valid date";
+
+            window.REQUIRED_MULTISELECT_MESSAGE =
+              "Please select at least 1 option";
+
+            window.translation = {
+              common: {
+                selectedList: "{quantity} list selected",
+                selectedLists: "{quantity} lists selected",
+                selectedOption: "{quantity} selected",
+                selectedOptions: "{quantity} selected",
+              },
+            };
+
+            var AUTOHIDE = Boolean(0);
+          </script>
+
+          <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
+          <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+          <!-- END - We recommend to place the above code in footer or bottom of your website html  -->
+
+          <!-- End Brevo Form -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap" style="max-width: 760px">
+      <div class="section-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Before you ask</h2>
+      </div>
+
+      <details class="faq-item" open>
+        <summary>Is GTA 6 confirmed for PC?</summary>
+        <p>
+          Not yet. As of now, Rockstar has only confirmed PlayStation 5 and
+          Xbox Series X|S for November 19, 2026. Rockstar's last two major
+          releases (GTA V, RDR2) both came to PC roughly 12–18 months after
+          console launch, which is the pattern most analysts expect to repeat.
+        </p>
+      </details>
+      <details class="faq-item">
+        <summary>Where do your predicted specs come from?</summary>
+        <p>
+          We cross-reference the RAGE engine's requirements history, the
+          confirmed PS5/Xbox Series X hardware floor, and how demanding the
+          environments shown in official trailers appear to be. It's an
+          estimate, clearly labeled as one — never presented as an official
+          Rockstar document.
+        </p>
+      </details>
+      <details class="faq-item">
+        <summary>Will this page update when specs are official?</summary>
+        <p>
+          Yes — that's the entire reason this exists. The scan tool and the
+          table above will be swapped to Rockstar's real, published numbers
+          the day they're announced.
+        </p>
+      </details>
+      <details class="faq-item">
+        <summary>Is this an official Rockstar or Take-Two site?</summary>
+        <p>
+          No. This is an independent, unofficial fan resource. It is not
+          affiliated with, endorsed by, or connected to Rockstar Games or
+          Take-Two Interactive.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-disclaimer">
+        GTARequirements is an unofficial fan-made resource and is not
+        affiliated with, endorsed by, or connected to Rockstar Games, Take-Two
+        Interactive, or the Grand Theft Auto trademark. All game names and
+        images are property of their respective owners. Predicted specs are
+        community estimates, not official documentation.
+      </div>
+      <div class="footer-links">
+        <a href="#specs">Specs</a>
+        <a href="#faq">FAQ</a>
+        <a href="#signup">Notify me</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Countdown ----
+    const target = new Date("2026-11-19T00:00:00");
+    function tick() {
+      const now = new Date();
+      let diff = Math.max(0, target - now);
+      const d = Math.floor(diff / 86400000);
+      diff -= d * 86400000;
+      const h = Math.floor(diff / 3600000);
+      diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);
+      diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+      document.getElementById("cd-d").textContent = String(d).padStart(
+        2,
+        "0"
+      );
+      document.getElementById("cd-h").textContent = String(h).padStart(
+        2,
+        "0"
+      );
+      document.getElementById("cd-m").textContent = String(m).padStart(
+        2,
+        "0"
+      );
+      document.getElementById("cd-s").textContent = String(s).padStart(
+        2,
+        "0"
+      );
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ---- Scan console ----
+    const tiers = ["bad", "warn", "ok", "ok"]; // score per option index roughly mapped
+    document.getElementById("scanBtn").addEventListener("click", function () {
+      const cpu = parseInt(document.getElementById("cpu").value, 10);
+      const gpu = parseInt(document.getElementById("gpu").value, 10);
+      const ram = parseInt(document.getElementById("ram").value, 10);
+
+      const cpuLabel = [
+        "Below predicted minimum",
+        "Meets minimum",
+        "Meets recommended",
+        "Exceeds recommended",
+      ][cpu];
+      const gpuLabel = [
+        "Below predicted minimum",
+        "Meets minimum",
+        "Meets recommended",
+        "Exceeds recommended",
+      ][gpu];
+      const ramLabel =
+        ram === 0
+          ? "Below predicted minimum (12GB+)"
+          : ram === 1
+            ? "Meets recommended (16GB)"
+            : "Exceeds recommended";
+
+      const cpuClass = cpu === 0 ? "bad" : cpu === 1 ? "warn" : "ok";
+      const gpuClass = gpu === 0 ? "bad" : gpu === 1 ? "warn" : "ok";
+      const ramClass = ram === 0 ? "warn" : "ok";
+
+      document.getElementById("rCpu").textContent = cpuLabel;
+      document.getElementById("rCpu").className = "v " + cpuClass;
+      document.getElementById("rGpu").textContent = gpuLabel;
+      document.getElementById("rGpu").className = "v " + gpuClass;
+      document.getElementById("rRam").textContent = ramLabel;
+      document.getElementById("rRam").className = "v " + ramClass;
+
+      const score =
+        cpu === 0 || gpu === 0
+          ? "bad"
+          : cpu === 1 || gpu === 1 || ram === 0
+            ? "warn"
+            : "ok";
+      const verdict = document.getElementById("verdict");
+      verdict.className = "verdict " + score;
+      const titles = {
+        ok: "Predicted: you're covered",
+        warn: "Predicted: playable, expect compromises",
+        bad: "Predicted: likely below the floor",
+      };
+      const bodies = {
+        ok: "Based on our estimated requirements, your rig should handle GTA 6 comfortably. Real numbers may shift this once Rockstar confirms a PC release.",
+        warn: "You could likely run it, probably at lower settings or resolution. Worth watching for the official spec sheet before you decide on upgrades.",
+        bad: "Your setup falls under our predicted minimum. No rush to upgrade yet — nothing is official, and a PC version isn't even confirmed.",
+      };
+      const icons = { ok: "✓", warn: "!", bad: "✕" };
+      document.getElementById("verdictIcon").textContent = icons[score];
+      document.getElementById("verdictTitle").textContent = titles[score];
+      document.getElementById("verdictBody").textContent = bodies[score];
+
+      const readout = document.getElementById("readout");
+      readout.classList.remove("show");
+      void readout.offsetWidth; // restart animation
+      readout.classList.add("show");
+    });
+  </script>
+</body>
+
+</html>

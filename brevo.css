@@ -1,0 +1,77 @@
+
+/* ---------- Brevo form override — matches site theme ---------- */
+#sib-form-container{
+  background:transparent !important;
+}
+#sib-container{
+  background:transparent !important;
+  border:none !important;
+  max-width:none !important;
+  text-align:left !important;
+}
+#sib-form-container .sib-form-message-panel{
+  font-family:'IBM Plex Mono',monospace !important;
+  font-size:12px !important;
+  border-radius:3px !important;
+}
+
+/* email input */
+#sib-container .entry__field .input{
+  background:#0A1920 !important;
+  border:1px solid var(--panel-line) !important;
+  color:var(--sand) !important;
+  font-family:'Manrope',sans-serif !important;
+  font-size:14px !important;
+  border-radius:3px !important;
+  padding:5px 14px !important;
+  width:100% !important;
+}
+#sib-container .entry__field .input:focus{
+  outline:2px solid var(--cyan) !important;
+  outline-offset:2px !important;
+}
+#sib-container .entry__field .input::placeholder{
+  color:var(--sand-dim) !important;
+}
+
+/* checkbox / opt-in label */
+#sib-container .sib-optin span{
+  color:var(--sand-dim) !important;
+  font-family:'Manrope',sans-serif !important;
+  font-size:12px !important;
+  background:transparent !important;
+}
+#sib-container .sib-optin p{margin:0 !important;}
+#sib-container .sib-optin a{color:var(--cyan) !important;}
+
+/* submit button */
+#sib-container .sib-form-block__button{
+  background:var(--magenta) !important;
+  color:var(--sand) !important;
+  font-family:'IBM Plex Mono',monospace !important;
+  font-size:13px !important;
+  letter-spacing:0.04em !important;
+  border-radius:2px !important;
+  padding:11px 20px !important;
+  transition:transform .15s ease, box-shadow .15s ease !important;
+}
+#sib-container .sib-form-block__button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 0 0 3px rgba(255,46,99,0.22);
+}
+#sib-container .sib-form-block__button svg{fill:var(--sand) !important;}
+
+/* error / success panels, keep legible on dark bg */
+#error-message{
+  background:rgba(255,46,99,0.08) !important;
+  border-color:rgba(255,46,99,0.35) !important;
+  color:var(--sand) !important;
+}
+#success-message{
+  background:rgba(45,225,199,0.08) !important;
+  border-color:rgba(45,225,199,0.35) !important;
+  color:var(--sand) !important;
+}
+
+/* tighten Brevo's default block spacing so it lines up with the rest of the form column */
+.sib-form-block{padding:0 !important;}
